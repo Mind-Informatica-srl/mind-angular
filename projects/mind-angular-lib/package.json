@@ -1,0 +1,25 @@
+{
+  "name": "@mind-informatica-srl/mind-angular-lib",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^12.2.0",
+    "@angular/core": "^12.2.0",
+    "@angular/material": "^12.2.13"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "description": "Mind Angular Lib: angular utils of Mind Informatica",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Mind-Informatica-srl/mindangularlib"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "private": false,
+  "author": "Mind Informatica",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/mindinformatica/mindangularlib#readme"
+}

@@ -1,0 +1,25 @@
+<!--<h1 mat-dialog-title>{{data.username}}</h1>-->
+<div mat-dialog-title *ngIf="data.title" [innerHtml]="data.title"></div>
+
+<div mat-dialog-content>
+  <div [innerHtml]="data.message"></div>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-raised-button
+    color="primary"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+  >
+    {{ data.confirmButtonText ?? "Ok" }}
+  </button>
+  <button
+    mat-stroked-button
+    color="accent"
+    style="margin-right: 1%"
+    [mat-dialog-close]="false"
+    *ngIf="data.showNegativeButton"
+  >
+    {{ data.negativeButtonText ?? "Annulla" }}
+  </button>
+</div>
