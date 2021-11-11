@@ -14,6 +14,7 @@ incrementare il numero di versione in package.json in projects/mind-angular-lib
   [link](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry)
 
 - Eseguire i seguenti comandi posizionandosi prima nella cartella mind-angular
+  [link](https://angular.io/guide/creating-libraries#publishing-your-library)
 
 ```
 ng build mind-angular-lib
