@@ -26,6 +26,8 @@ jobs:
       - name: Versionamento libreria
         run: cd projects/mind-angular-lib
       - run: npm version ${GITHUB_REF##*/}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: cd ../../
       - name: Build libreria
         run: ng build mind-angular-lib
