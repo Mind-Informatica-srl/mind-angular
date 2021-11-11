@@ -24,13 +24,13 @@ jobs:
       - name: Installazione angular 12.2.10
         run: npm i -g @angular/cli@12.2.10
       - name: Versionamento libreria
-        run: cd projects/mind-angular-lib
-      - run: npm version ${GITHUB_REF##*/} --no-git-tag-version
+        working-directory: ./projects/mind-angular-lib
+        run: npm version ${GITHUB_REF##*/} --no-git-tag-version
       - run: cd ../../
       - name: Build libreria
         run: ng build mind-angular-lib
-      - run: cd dist/mind-angular-lib  
       - name: Pubblicazione npm  
+        working-directory: ./dist/mind-angular-lib 
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
