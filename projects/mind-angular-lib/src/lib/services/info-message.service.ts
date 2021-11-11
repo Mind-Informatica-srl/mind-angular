@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 export enum MessageType {
@@ -15,9 +16,9 @@ export interface InfoMessageData {
   error?: any;
 }
 
-// @Injectable({
-//   providedIn: 'root',
-// })
+@Injectable({
+  providedIn: 'root',
+})
 export class InfoMessageService {
   private messageSubj = new Subject<InfoMessageData>();
 

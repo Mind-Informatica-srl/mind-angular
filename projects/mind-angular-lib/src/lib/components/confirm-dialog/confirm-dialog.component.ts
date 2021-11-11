@@ -1,6 +1,6 @@
 import { Component, HostListener, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MessageType } from '../../services/user-message.service';
+import { MessageType } from '../../services/info-message.service';
 
 export interface ConfirmDialogData {
   title: string;

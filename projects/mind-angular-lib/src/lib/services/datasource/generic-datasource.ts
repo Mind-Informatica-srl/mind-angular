@@ -2,7 +2,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable, of, throwError } from 'rxjs';
 import { Directive } from '@angular/core';
 import { catchError, tap, first, switchMap } from 'rxjs/operators';
-import { InfoMessageService, MessageType } from '../user-message.service';
+import { InfoMessageService, MessageType } from '../info-message.service';
 import { DatasourceParam } from './datasource-param.model';
 import { GenericRepositoryInterface } from './generic-repository-interface';
 import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';

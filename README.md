@@ -16,7 +16,7 @@ incrementare il numero di versione in package.json in projects/mind-angular-lib
 - Eseguire i seguenti comandi posizionandosi prima nella cartella mind-angular
 
 ```
-ng build mind-angular-lib --prod
+ng build mind-angular-lib
 cd dist/mind-angular-lib
 npm publish
 ```

@@ -2,7 +2,7 @@ import { GenericDataSource } from '../generic-datasource';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpStaticRepository } from '../http-static-repository';
-import { InfoMessageService } from '../../user-message.service';
+import { InfoMessageService } from '../../info-message.service';
 import { MatDialog } from '@angular/material/dialog';
 
 interface HttpStaticInterfaceExample {
