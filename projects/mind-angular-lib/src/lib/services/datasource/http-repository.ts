@@ -82,33 +82,33 @@ export class HttpRepository<T> implements GenericRepositoryInterface<T> {
    * Metodo per chiamare la stampa
    *
    * @param subPath string
+   * @param responseType any = 'blob'
    * @param dsParams DatasourceParam[] = []
-   * @param responseType any = 'application/pdf'
    * @returns Observable<any>
    */
   print(
-    subPath?: string,
-    dsParams?: DatasourceParam[],
-    responseType: any = 'application/pdf'
+    subPath: string = '',
+    responseType: any = 'blob',
+    dsParams?: DatasourceParam[]
   ): Observable<any> {
-    return this.genericGet(subPath, dsParams, responseType);
+    return this.genericGet(subPath, responseType, dsParams);
   }
 
   /**
    * Metodo per fare una richiesta GET generica
    *
-   * @param subPath string
-   * @param dsParams DatasourceParam[] = []
+   * @param subPath string = ''
    * @param responseType any = 'json'
+   * @param dsParams DatasourceParam[]
    * @returns Observable<any>
    */
   genericGet(
-    subPath?: string,
-    dsParams?: DatasourceParam[],
-    responseType: any = 'json'
+    subPath: string = '',
+    responseType: any = 'json',
+    dsParams?: DatasourceParam[]
   ): Observable<any> {
     let url = this.apiUrl;
-    if (subPath) {
+    if (subPath && subPath !== '') {
       url += `${url}/${subPath}`;
     }
     const params: HttpParams = this.convertToHttpParams(dsParams);
