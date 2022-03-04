@@ -22,19 +22,20 @@ export class HttpStaticRepository<T>
     this.loadServerData();
   }
 
-  getAll(dsParams: DatasourceParam[]): Observable<T[]> {
+  getAll(dsParams: DatasourceParam[] = []): Observable<T[]> {
     return this.dataList$;
   }
-  getOne(id: string | number, dsParams: DatasourceParam[]): Observable<T> {
+
+  getOne(id: string | number, dsParams: DatasourceParam[] = []): Observable<T> {
     throw new Error('Method not implemented.');
   }
-  insert(element: T): Observable<T> {
+  insert(element: T, dsParams: DatasourceParam[] = []): Observable<T> {
     throw new Error('Method not implemented.');
   }
-  update(element: T): Observable<T> {
+  update(element: T, dsParams: DatasourceParam[] = []): Observable<T> {
     throw new Error('Method not implemented.');
   }
-  delete(element: T): Observable<any> {
+  delete(element: T, dsParams: DatasourceParam[] = []): Observable<any> {
     throw new Error('Method not implemented.');
   }
 

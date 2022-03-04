@@ -15,6 +15,13 @@ export class GenericDataSource<T> {
     public dialog: MatDialog
   ) {}
 
+  /**
+   * Richiede lista di dati al server.
+   * E' possibile aggiungere parametri alla request tramite params
+   *
+   * @param params DatasourceParam[] = []
+   * @returns Observable<T[]>
+   */
   getAll(params: DatasourceParam[] = []): Observable<T[]> {
     return this.repository.getAll(params).pipe(
       catchError((err) => {
@@ -23,6 +30,14 @@ export class GenericDataSource<T> {
     );
   }
 
+  /**
+   * Esegue operazione per recuperare i dati di una risorsa in base al suo id.
+   * E' possibile aggiungere parametri alla request tramite params
+   *
+   * @param id string | number
+   * @param params DatasourceParam[] = []
+   * @returns Observable<T>
+   */
   getOne(id: string | number, params: DatasourceParam[] = []): Observable<T> {
     return this.repository.getOne(id, params).pipe(
       catchError((err) => {
@@ -31,9 +46,17 @@ export class GenericDataSource<T> {
     );
   }
 
-  insert(element: T): Observable<T> {
+  /**
+   * Esegue operazione di insert.
+   * E' possibile aggiungere parametri alla request tramite params
+   *
+   * @param element T
+   * @param params DatasourceParam[] = []
+   * @returns Observable<T>
+   */
+  insert(element: T, params: DatasourceParam[] = []): Observable<T> {
     return this.repository
-      .insert(element)
+      .insert(element, params)
       .pipe(
         catchError((err) => {
           return this.onError(element, err);
@@ -49,9 +72,17 @@ export class GenericDataSource<T> {
       );
   }
 
-  update(element: T): Observable<T> {
+  /**
+   * Esegue chiamata per aggiornare una risorsa.
+   * E' possibile aggiungere parametri alla request tramite params
+   *
+   * @param element T
+   * @param params DatasourceParam[] = []
+   * @returns Observable<T>
+   */
+  update(element: T, params: DatasourceParam[] = []): Observable<T> {
     return this.repository
-      .update(element)
+      .update(element, params)
       .pipe(
         catchError((err) => {
           return this.onError(element, err);
@@ -67,7 +98,17 @@ export class GenericDataSource<T> {
       );
   }
 
-  delete(element: T): Observable<any> {
+  /**
+   * Avvia richiesta per cancellazione.
+   * E' possibile aggiungere parametri alla request tramite params
+   *
+   * prima viene chiesta conferma all'utente
+   *
+   * @param element
+   * @param params
+   * @returns Observable<any>
+   */
+  delete(element: T, params: DatasourceParam[] = []): Observable<any> {
     let dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Richiesta eliminazione',
@@ -80,7 +121,7 @@ export class GenericDataSource<T> {
       switchMap((confirm) => {
         if (confirm) {
           return this.repository
-            .delete(element)
+            .delete(element, params)
             .pipe(
               catchError((err) => {
                 return this.onError(element, err);
@@ -102,6 +143,12 @@ export class GenericDataSource<T> {
     );
   }
 
+  /**
+   * invia all'utente messaggio di errore
+   *
+   * @param msg string
+   * @param type MessageType
+   */
   addOkMessage(msg: string, type: MessageType): void {
     this.infoMessageService.message({
       message: msg,
@@ -109,7 +156,14 @@ export class GenericDataSource<T> {
     });
   }
 
-  private onError(err: any, element?: T) {
+  /**
+   * Intercetta l'errore per mostrarlo all'utente
+   *
+   * @param err any
+   * @param element T
+   * @returns Observable<never>
+   */
+  protected onError(err: any, element?: T): Observable<never> {
     this.infoMessageService.message({
       element: element,
       error: err,
@@ -120,7 +174,13 @@ export class GenericDataSource<T> {
     return throwError(err);
   }
 
-  public static handleError(error: any) {
+  /**
+   * Gestisce l'errore
+   *
+   * @param error any
+   * @returns Observable<never>
+   */
+  public static handleError(error: any): Observable<never> {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);

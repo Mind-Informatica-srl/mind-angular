@@ -7,7 +7,7 @@ import { DatasourceParam } from './datasource-param.model';
 export interface GenericRepositoryInterface<T> {
   getAll(dsParams: DatasourceParam[]): Observable<T[]>;
   getOne(id: string | number, dsParams: DatasourceParam[]): Observable<T>;
-  insert(element: T): Observable<T>;
-  update(element: T): Observable<T>;
-  delete(element: T): Observable<any>;
+  insert(element: T, dsParams: DatasourceParam[]): Observable<T>;
+  update(element: T, dsParams: DatasourceParam[]): Observable<T>;
+  delete(element: T, dsParams: DatasourceParam[]): Observable<any>;
 }
