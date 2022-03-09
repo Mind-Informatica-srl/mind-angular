@@ -1,4 +1,7 @@
-import { GenericRepositoryInterface } from './generic-repository-interface';
+import {
+  ApiPaginatorListResponse,
+  GenericRepositoryInterface,
+} from './generic-repository-interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Directive } from '@angular/core';
@@ -24,6 +27,32 @@ export class HttpRepository<T> implements GenericRepositoryInterface<T> {
   getAll(dsParams: DatasourceParam[] = []): Observable<T[]> {
     const params: HttpParams = this.convertToHttpParams(dsParams);
     return this.http.get<T[]>(this.apiUrl, { params });
+  }
+
+  /**
+   * Richiede al server una lista paginata
+   * @param pageSize
+   * @param page
+   * @param params
+   */
+  getPage(
+    pageSize: number,
+    page: number = 0,
+    dsParams: DatasourceParam[] = []
+  ): Observable<ApiPaginatorListResponse<T>> {
+    dsParams.push(
+      {
+        key: 'pageSize',
+        value: pageSize,
+      },
+      {
+        key: 'page',
+        value: page,
+      }
+    );
+    const params: HttpParams = this.convertToHttpParams(dsParams);
+
+    return this.http.get<ApiPaginatorListResponse<T>>(this.apiUrl, { params });
   }
 
   /**

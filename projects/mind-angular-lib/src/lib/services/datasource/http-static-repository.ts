@@ -1,4 +1,7 @@
-import { GenericRepositoryInterface } from './generic-repository-interface';
+import {
+  ApiPaginatorListResponse,
+  GenericRepositoryInterface,
+} from './generic-repository-interface';
 import { OnDestroy, Directive } from '@angular/core';
 
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
@@ -24,6 +27,20 @@ export class HttpStaticRepository<T>
 
   getAll(dsParams: DatasourceParam[] = []): Observable<T[]> {
     return this.dataList$;
+  }
+
+  /**
+   * Richiede al server una lista paginata
+   * @param pageSize
+   * @param page
+   * @param params
+   */
+  getPage(
+    pageSize: number,
+    page: number = 0,
+    dsParams: DatasourceParam[] = []
+  ): Observable<ApiPaginatorListResponse<T>> {
+    throw new Error('Method not implemented.');
   }
 
   getOne(id: string | number, dsParams: DatasourceParam[] = []): Observable<T> {
