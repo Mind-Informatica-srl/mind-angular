@@ -108,22 +108,6 @@ export class HttpRepository<T> implements GenericRepositoryInterface<T> {
   }
 
   /**
-   * Metodo per chiamare la stampa
-   *
-   * @param subPath string
-   * @param responseType any = 'blob'
-   * @param dsParams DatasourceParam[] = []
-   * @returns Observable<any>
-   */
-  print(
-    subPath: string = '',
-    responseType: any = 'blob',
-    dsParams?: DatasourceParam[]
-  ): Observable<any> {
-    return this.genericGet(subPath, responseType, dsParams);
-  }
-
-  /**
    * Metodo per fare una richiesta GET generica
    *
    * @param subPath string = ''
