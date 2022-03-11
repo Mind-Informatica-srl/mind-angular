@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
 
+# Creazione nuova release
+
+Basta eseguire un push con un tag che incrementi l'ultimo numero di versione.
+Poi viene eseguito automaticamente il workflow di github `nuova-release.yaml`
+
 # Aggiornamento npm
 
 incrementare il numero di versione in package.json in projects/mind-angular-lib
